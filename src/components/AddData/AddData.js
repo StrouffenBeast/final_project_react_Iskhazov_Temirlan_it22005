@@ -27,7 +27,7 @@ const AddData = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/api/add-user", {
+            const response = await fetch("http://localhost:8000/api/add-user", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(newData),

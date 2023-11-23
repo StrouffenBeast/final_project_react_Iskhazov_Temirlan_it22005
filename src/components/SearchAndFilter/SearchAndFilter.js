@@ -11,7 +11,7 @@ const SearchFilter = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/users");
+            const response = await fetch("http://localhost:8000/api/users");
             const data = await response.json();
             setUsers(data);
         } catch (error) {
@@ -35,7 +35,7 @@ const SearchFilter = () => {
                 user.name.toLowerCase().includes(searchTerm) ||
                 user.surname.toLowerCase().includes(searchTerm) ||
                 user.age.toString().includes(searchTerm) ||
-                user.gender.gender.toLowerCase().includes(searchTerm) ||
+                user.gender.toString().includes(searchTerm) ||
                 user.rolesList[0].role.toLowerCase().includes(searchTerm) ||
                 user.regularCustomer.id.toString().includes(searchTerm) ||
                 user.about.toLowerCase().includes(searchTerm)
@@ -72,7 +72,7 @@ const SearchFilter = () => {
                             <td>{user.name}</td>
                             <td>{user.surname}</td>
                             <td>{user.age}</td>
-                            <td>{user.gender.gender}</td>
+                            <td>{user.gender}</td>
                             <td>{user.rolesList[0].role}</td>
                             <td>{user.regularCustomer.id}</td>
                             <td>{user.about}</td>
