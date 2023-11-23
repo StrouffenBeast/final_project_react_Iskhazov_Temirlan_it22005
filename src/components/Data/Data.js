@@ -58,7 +58,7 @@ const Data = ({ deleteUser }) => {
     const deleteData = useCallback(
         (id) => {
             deleteUser(id);
-            fetch(`http://localhost:8080/api/delete-user/${id}`, {
+            fetch(`http://localhost:8000/api/delete-user/${id}`, {
                 method: 'DELETE',
             }).then((response) => {
                 if (response.ok) {
@@ -97,7 +97,7 @@ const Data = ({ deleteUser }) => {
         const updateThisUser = updUser_id;
         const newData = { mail, password, name, surname, age, about, gender_id };
 
-        fetch(`http://localhost:8080/api/update-user/${updateThisUser}`, {
+        fetch(`http://localhost:8000/api/update-user/${updateThisUser}`, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newData),

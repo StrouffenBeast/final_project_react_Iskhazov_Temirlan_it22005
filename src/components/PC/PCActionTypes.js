@@ -1,0 +1,1 @@
+export const DELETE_PC = 'DELETE_PC';
