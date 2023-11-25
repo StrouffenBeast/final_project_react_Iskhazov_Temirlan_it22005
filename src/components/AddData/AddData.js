@@ -10,7 +10,7 @@ const AddData = () => {
     const [surname, setSurname] = useState("");
     const [age, setAge] = useState(0);
     const [about, setAbout] = useState("");
-    const [gender_id, setGenderId] = useState("",0);
+    const [gender, setGender] = useState("",0);
     const navigate = useNavigate();
 
 
@@ -23,7 +23,7 @@ const AddData = () => {
             surname,
             age,
             about,
-            gender_id
+            gender
         };
 
         try {
@@ -86,9 +86,9 @@ const AddData = () => {
                                     <div className="form-group">
                                         <label>Gender</label>
                                         <br></br>
-                                        <input className="form-check" type="checkbox" checked={gender_id === 'male'} onChange={e => setGenderId(1)} name="gender" value="male"></input>
+                                        <input type="checkbox" checked={gender === 'male'} onChange={e => setGender(1)} name="gender" value="male"></input>
                                         <label>Male</label>
-                                        <input className="form-check" type="checkbox" checked={gender_id === 'female'} onChange={e => setGenderId(2)} name="gender" value="female"></input>
+                                        <input type="checkbox" checked={gender === 'female'} onChange={e => setGender(2)} name="gender" value="female"></input>
                                         <label>Female</label>
 
                                 </div>

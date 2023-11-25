@@ -21,7 +21,7 @@ const ListPc = ({ deletePC }) => {
     const [updMouse, setUpdMouse] = useState('');
     const [updKeyboard, setUpdKeyboard] = useState('');
     const [updHeadphones, setUpdHeadphones] = useState('');
-    const [Users, setUsers] = useState(0);
+    const [Users, setUsers] = useState({ "id": "" });
     const [updPC_id, setUpdPC_id] = useState(0);
 
     useEffect(() => {
@@ -92,7 +92,7 @@ const ListPc = ({ deletePC }) => {
             setUpdMouse(selectedPC.mouse);
             setUpdKeyboard(selectedPC.keyboard);
             setUpdHeadphones(selectedPC.headphones);
-            setUsers(selectedPC.users);
+            setUsers(selectedPC.users ? { id: selectedPC.users.id } : { id: 0 });
 
             setUpdPC_id(selectedPC.pc_Id);
         },
@@ -110,10 +110,10 @@ const ListPc = ({ deletePC }) => {
         const mouse = updMouse;
         const keyboard = updKeyboard;
         const headphones = updHeadphones;
-        const user_id = Users;
-        console.log(user_id)
+        const users = Users;
+        console.log(users)
         const updateThisPC = updPC_id;
-        const newData = { cpu, motherboard, ram, drive, psu, gpu, display, mouse, keyboard, headphones, user_id };
+        const newData = { cpu, motherboard, ram, drive, psu, gpu, display, mouse, keyboard, headphones, users };
         console.log(newData)
         fetch(`http://localhost:8000/api/update-pc/${updateThisPC}`, {
             method: 'PUT',
@@ -259,11 +259,10 @@ const ListPc = ({ deletePC }) => {
                                 <input
                                     name="Users"
                                     value={Users?.id}
-                                    onChange={(e) => setUsers(e.target.value)}
+                                    onChange={(e) => setUsers({ "id": parseInt(e.target.value, 10) || '' })}
                                     className="form-control"
                                 />
                             </div>
-
 
                         </div>
                         <button onClick={updateData} className="btn btn-warning">

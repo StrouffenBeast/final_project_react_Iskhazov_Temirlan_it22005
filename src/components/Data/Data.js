@@ -17,7 +17,7 @@ const Data = ({ deleteUser }) => {
     const [updSurname, setUpdSurname] = useState('');
     const [updAge, setUpdAge] = useState(0);
     const [updAbout, setUpdAbout] = useState('');
-    const [updGender_id, setUpdGenderId] = useState(0);
+    const [updGender, setUpdGender] = useState(0);
     const [updUser_id, setUpdUserId] = useState(0);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const Data = ({ deleteUser }) => {
             setUpdSurname(data[0].surname);
             setUpdAge(data[0].age);
             setUpdAbout(data[0].about);
-            setUpdGenderId(data[0].gender.id);
+            setUpdGender(data[0].gender);
             setUpdUserId(data[0].id);
         } catch (error) {
             setError(error);
@@ -79,7 +79,7 @@ const Data = ({ deleteUser }) => {
             setUpdSurname(selectedUser.surname);
             setUpdAge(selectedUser.age);
             setUpdAbout(selectedUser.about);
-            setUpdGenderId(selectedUser.gender.id);
+            setUpdGender(selectedUser.gender);
             setUpdUserId(selectedUser.id);
         },
         [users]
@@ -92,10 +92,10 @@ const Data = ({ deleteUser }) => {
         const surname = updSurname;
         const age = updAge;
         const about = updAbout;
-        const gender_id = updGender_id;
-        console.log(gender_id)
+        const gender = updGender;
+        console.log(gender)
         const updateThisUser = updUser_id;
-        const newData = { mail, password, name, surname, age, about, gender_id };
+        const newData = { mail, password, name, surname, age, about, gender };
 
         fetch(`http://localhost:8000/api/update-user/${updateThisUser}`, {
             method: 'PUT',
@@ -106,7 +106,7 @@ const Data = ({ deleteUser }) => {
                 fetchData();
             });
         });
-    }, [updMail, updPassword, updName, updSurname, updAge, updAbout, updGender_id, updUser_id, fetchData]);
+    }, [updMail, updPassword, updName, updSurname, updAge, updAbout, updGender, updUser_id, fetchData]);
 
     const contextValue = useMemo(() => ({
         users,
@@ -119,8 +119,8 @@ const Data = ({ deleteUser }) => {
         updSurname,
         updAge,
         updAbout,
-        updGender_id,
-    }), [users, deleteData, selectUser, updateData, updMail, updPassword, updName, updSurname, updAge, updAbout, updGender_id]);
+        updGender,
+    }), [users, deleteData, selectUser, updateData, updMail, updPassword, updName, updSurname, updAge, updAbout, updGender]);
 
     if (error) {
         throw error;
@@ -153,7 +153,7 @@ const Data = ({ deleteUser }) => {
                         <td>{user.name}</td>
                         <td>{user.surname}</td>
                         <td>{user.age}</td>
-                        <td>{user.gender.gender}</td>
+                        <td>{user.gender}</td>
                         <td>{user.rolesList[0].role}</td>
                         <td>{user.regularCustomer.id}</td>
                         <td>{user.about}</td>
@@ -208,10 +208,9 @@ const Data = ({ deleteUser }) => {
                             <div className="form-group">
                                 <label>Gender</label>
                                 <select
-                                    name="updGender_id"
-                                    value={updGender_id}
-                                    onChange={(e) => setUpdGenderId(e.target.value)}
-                                    className="form-control"
+                                    name="updGender"
+                                    value={updGender}
+                                    onChange={(e) => setUpdGender(e.target.value)}
                                 >
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>

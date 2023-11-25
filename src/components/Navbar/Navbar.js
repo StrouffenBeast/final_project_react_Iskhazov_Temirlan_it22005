@@ -20,6 +20,9 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/pc">PC</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/add-pc">Add new PC</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
